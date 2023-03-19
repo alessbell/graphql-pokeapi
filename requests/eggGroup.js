@@ -1,9 +1,9 @@
-import { PokedexInstance, handleError, hitSuccessCounter, extractIdFromUrl } from '../utils';
+import { PokedexInstance, handleError, extractIdFromUrl } from '../utils';
 
 export const getEggGroupsList = async () => {
   try {
     const response = await PokedexInstance.getEggGroupsList();
-    hitSuccessCounter();
+
     if (response && response.results) {
       return {
         ...response,
@@ -27,7 +27,7 @@ export const getEggGroupsList = async () => {
 export const getEggGroupByName = async (eggGroup = '') => {
   try {
     const response = await PokedexInstance.getEggGroupByName(eggGroup);
-    hitSuccessCounter();
+
     return { response, params: { eggGroup }, status: true, message: '' };
   } catch (error) {
     console.error(`> Error api getEggGroupByName(${eggGroup})`, error);

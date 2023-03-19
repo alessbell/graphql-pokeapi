@@ -1,9 +1,9 @@
-import { PokedexInstance, handleError, hitSuccessCounter, extractIdFromUrl } from '../utils';
+import { PokedexInstance, handleError, extractIdFromUrl } from '../utils';
 
 export const getGrowthRatesList = async () => {
   try {
     const response = await PokedexInstance.getGrowthRatesList();
-    hitSuccessCounter();
+
     if (response && response.results) {
       return {
         ...response,
@@ -27,7 +27,7 @@ export const getGrowthRatesList = async () => {
 export const getGrowthRateByName = async (growthRate = '') => {
   try {
     const response = await PokedexInstance.getGrowthRateByName(growthRate);
-    hitSuccessCounter();
+
     return { response, params: { growthRate }, status: true, message: '' };
   } catch (error) {
     console.error(`> Error api getGrowthRateByName(${growthRate})`, error);

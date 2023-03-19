@@ -1,9 +1,9 @@
-import { PokedexInstance, handleError, hitSuccessCounter, extractIdFromUrl } from '../utils';
+import { PokedexInstance, handleError, extractIdFromUrl } from '../utils';
 
 export const getNaturesList = async () => {
   try {
     const response = await PokedexInstance.getNaturesList();
-    hitSuccessCounter();
+
     if (response && response.results) {
       return {
         ...response,
@@ -27,7 +27,7 @@ export const getNaturesList = async () => {
 export const getNatureByName = async (nature = '') => {
   try {
     const response = await PokedexInstance.getNatureByName(nature);
-    hitSuccessCounter();
+
     return { response, params: { nature }, status: true, message: '' };
   } catch (error) {
     console.error(`> Error api getNatureByName(${nature})`, error);
